@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Недвижимость Сербии",
+  "version": "0.1.0",
+  "description": "Собирает объявления недвижимости со страниц на карту",
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.nekretnine.rs/*"],
+  "action": { "default_popup": "src/popup/popup.html" },
+  "background": { "service_worker": "src/background/service-worker.js", "type": "module" },
+  "content_scripts": [
+    {
+      "matches": ["https://www.nekretnine.rs/*"],
+      "js": ["src/content/content.js"],
+      "type": "module"
+    }
+  ],
+  "web_accessible_resources": [
+    { "resources": ["src/map/*", "vendor/*", "assets/*"], "matches": ["<all_urls>"] }
+  ],
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  }
+}
